@@ -1,5 +1,5 @@
 
-# SGE
+# SGE (Version 0.3)
 A simple Python game engine used for creating simple 2D games.  It is built on the Python Turtle module.
 
 #Overview:
@@ -12,10 +12,21 @@ The purpose of the Simple Game Engine is to give beginning Python coders a simpl
 
 ####Initial Game Setup:
 
-```python
+``` 
 from SGE import *
 # WINDOW_WIDTH, WINDOW_HEIGHT, Background Color, and Window Title
 game = SGE(800, 600, "blue", "SGE Game Demo") 
+```
+
+###SGE Attributes
+```python
+title # Window title text (string)
+gravity # Game gravity constanst (float)
+state # Game state (string) or None
+FPS # Game FPS - default is 30 FPS (float)
+SCREEN_WIDTH # Width of the screen in pixels (int)
+SCREEN_HEIGHT # Height of the screen in pixels (int)
+time # Time in seconds (float)
 ```
 
 ###SGE Methods
@@ -73,6 +84,52 @@ is_collision(sprite_1, sprite_2)
 game.is_collision(player, enemy)
 ```
 
+###SGE.Sprite Class
+
+####Create a Sprite
+*It is recommended to create child class first*
+
+```python
+class Player(SGE.Sprite):
+    def __init__(self, shape, color, x, y):
+        SGE.Sprite.__init__(self, shape, color, x, y)
+# Shape, Color, starting x coordinate, starting y coordinate
+player = Player("triangle", "red", -400, 100)
+```
+
+####Sprite Attributes
+
+```python
+dx # x velocity (float)
+dy # y velocity (float)
+speed # speed (float)
+acceleration # acceleration (float)
+width # width in pixels (float)
+height # height in pixels (float)
+state # object state - default is "active" (string) or None
+friction # friction (float)
+solid # (bool)
+```
+
+####Sprite Methods
+
+Move
+```python
+sprite.move()
+```
+
+Destroy
+```python
+sprite.destroy()
+```
+
+Set Image
+```python
+sprite.set_image("image.gif", width, height)
+```
+
+
 
 Follow me on Twitter @tokyoedtech
+
 Various tutorials available on my YouTube Channel at https://www.youtube.com/channel/UC2vm-0XX5RkWCXWwtBZGOXg
