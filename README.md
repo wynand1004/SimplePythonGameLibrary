@@ -21,6 +21,6 @@ On Windows, SGE uses the winsound module to play sounds.  I have not tested this
 
 ## Documentation Available on the Wiki 
 
-Follow me on Twitter @tokyoedtech
+Follow me on Twitter [@tokyoedtech](https://twitter.com/tokyoedtech)
 
-Various tutorials available on my YouTube Channel at https://www.youtube.com/channel/UC2vm-0XX5RkWCXWwtBZGOXg
+Various tutorials available on my [YouTube Channel](https://www.youtube.com/channel/UC2vm-0XX5RkWCXWwtBZGOXg)
