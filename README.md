@@ -19,7 +19,7 @@ Sound files should be in .wav format for widest compatibility.
 
 On Windows, SGE uses the winsound module to play sounds.  I have not tested this yet as I do not have access to Windows at the moment.
 
-## Documentation Available on the Wiki 
+## Documentation Available on the [Wiki](https://github.com/wynand1004/SGE/wiki)
 
 Follow me on Twitter [@tokyoedtech](https://twitter.com/tokyoedtech)
 
