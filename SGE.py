@@ -1,6 +1,7 @@
-# Simple Game Engine by @TokyoEdTech
-# Python 3
+# Simple Game Engine by @TokyoEdTech AKA /u/wynand1004
+# Python 2.x and 3.x Compatible
 # Built on Top of the Turtle Module
+#
 import os
 import turtle
 import time
@@ -15,14 +16,9 @@ if os.name == "nt":
         print ("Winsound Module Not Available")
 
 class SGE(object):
-    # Class Constants Python 2
-    KEY_UP = "up"
-    KEY_DOWN = "down"
-    KEY_LEFT = "left"
-    KEY_RIGHT = "right"
-    KEY_SPACE = "space"
 
-    # Class Constants Python 3
+    # Class Constants
+    # Use for Keyboard Bindings
     KEY_UP = "Up"
     KEY_DOWN = "Down"
     KEY_LEFT = "Left"
@@ -38,6 +34,7 @@ class SGE(object):
         turtle.title(title)
         turtle.tracer(0)
         turtle.listen()
+        turtle.hideturtle() # Hides defaut turtle in Python 2.x
         self.title = title
         self.gravity = 0
         self.state = None
@@ -45,6 +42,15 @@ class SGE(object):
         self.SCREEN_WIDTH = screen_width
         self.SCREEN_HEIGHT = screen_height
         self.time = time.time()
+
+    def tick(self):
+        # Update the screen
+        self.update_screen()
+
+        # Iterate through all sprites and call their tick method
+        for sprite in SGE.sprites:
+            if sprite.state:
+                sprite.tick()
 
     def set_title(self, title):
         turtle.title(title)
@@ -57,7 +63,7 @@ class SGE(object):
         self.score = score
 
     def update_screen(self):
-        while time.time() < self.time + (1.0/self.FPS):
+        while time.time() < self.time + (1.0 / self.FPS):
             pass
         self.time = time.time()
         turtle.update()
@@ -66,10 +72,10 @@ class SGE(object):
         # Windows
         if os.name == 'nt':
             winsound.play(sound_file, winsound.SND_ASYNC)
-        #Linux
+        # Linux
         elif os.name == "posix":
             os.system("aplay {}&".format(sound_file))
-        #Mac
+        # Mac
         else:
             os.system("afplay {}&".format(sound_file))
 
@@ -98,22 +104,26 @@ class SGE(object):
         print ("Number of Registered Sprites: {}".format(len(SGE.sprites)))
         print ("Frames Per Second: {}".format(self.FPS))
 
-    def is_collision(sprite_1, sprite_2):
+    def is_collision(self, sprite_1, sprite_2):
         x_collision = (math.fabs(sprite_1.xcor() - sprite_2.xcor()) * 2) < (sprite_1.width + sprite_2.width)
         y_collision = (math.fabs(sprite_1.ycor() - sprite_2.ycor()) * 2) < (sprite_1.height + sprite_2.height)
         return (x_collision and y_collision)
 
+    def exit(self):
+        self.stop_all_sounds()
+        exit()
+
     class Sprite(turtle.Turtle):
         def __init__(self, shape, color, x = 0, y = 0):
             turtle.Turtle.__init__(self)
-            self.speed(0) #Animation Speed
+            self.speed(0) # Animation Speed
             self.shape(shape)
             self.color(color)
             self.penup()
             self.goto(x, y)
             self.dx = 0.0
             self.dy = 0.0
-            self.speed = 0.0 #Speed of motion
+            self.speed = 0.0 # Speed of motion
             self.acceleration = 0.0
             self.width = 20.0
             self.height = 20.0
@@ -122,15 +132,23 @@ class SGE(object):
             self.solid = True
             SGE.sprites.append(self)
 
+        def tick(self):
+            # This is the function that is called each frame of the game
+            # For most sprites, you'll want to call the move method here
+            pass
+
         def move(self):
             self.fd(self.speed)
 
         def destroy(self):
+            # When a sprite is destoyed move it off screen, hide it, and set state to None
+            # This is a workaround as there is no way to delete a sprite from memory in the turtle module.
             self.hideturtle()
             self.goto(10000, 10000)
             self.state = None
 
         def set_image(self, image, width, height):
+            # Allows the use of custom images (must be .gif) due to turtle/tkinter limitation
             turtle.register_shape(image)
             self.shape(image)
             self.width = width
