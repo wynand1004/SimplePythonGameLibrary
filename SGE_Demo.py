@@ -82,7 +82,7 @@ while True:
     # Put your game logic here
     for sprite in SGE.sprites:
         # Check collisions with Orbs
-        if sprite.state and isinstance(sprite, Orb) :
+        if sprite.state and isinstance(sprite, Orb):
             if game.is_collision(sprite, player):
-                # game.play_sound("collision.mp3")
+                game.play_sound("collision.wav")
                 sprite.destroy()

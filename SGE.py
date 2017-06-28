@@ -8,7 +8,7 @@ import time
 import random
 import math
 
-# If on Windows, import winsound
+# If on Windows, import winsound or, better yet, switch to Linux!
 if os.name == "nt":
     try:
         import winsound
@@ -24,33 +24,61 @@ class SGE(object):
     KEY_LEFT = "Left"
     KEY_RIGHT = "Right"
     KEY_SPACE = "space"
+    KEY_ESCAPE = "Escape"
 
     # Keep List of Sprites
     sprites = []
 
     def __init__(self, screen_width = 800, screen_height = 600, background_color = "white", title = "Simple Game Engine by @TokyoEdTech"):
+        # Setup using Turtle module methods
         turtle.setup(width=screen_width, height=screen_height)
         turtle.bgcolor(background_color)
         turtle.title(title)
         turtle.tracer(0)
-        turtle.listen()
+        turtle.listen() # Listen for keyboard input
         turtle.hideturtle() # Hides defaut turtle in Python 2.x
+        turtle.setundobuffer(0) # Do not keep turtle history in memory
+
+        # Attributes
         self.title = title
         self.gravity = 0
-        self.state = None
+        self.state = "showsplash"
         self.FPS = 30.0
         self.SCREEN_WIDTH = screen_width
         self.SCREEN_HEIGHT = screen_height
         self.time = time.time()
 
     def tick(self):
+        # Check the game state
+        # showsplash, running, gameover, paused
+
+        if self.state == "showsplash":
+            self.show_splash()
+
+        elif self.state == "paused":
+            pass
+
+        elif self.state == "gameover":
+            pass
+
+        else:
+            # Iterate through all sprites and call their tick method
+            for sprite in SGE.sprites:
+                if sprite.state:
+                    sprite.tick()
+
         # Update the screen
         self.update_screen()
 
-        # Iterate through all sprites and call their tick method
+    def show_splash(self):
+        # Show splash screen
+        # To be implemented
+        self.state = "running"
+
+    def hide_all_sprites(self):
         for sprite in SGE.sprites:
             if sprite.state:
-                sprite.tick()
+                sprite.destroy()
 
     def set_title(self, title):
         turtle.title(title)
@@ -109,9 +137,15 @@ class SGE(object):
         y_collision = (math.fabs(sprite_1.ycor() - sprite_2.ycor()) * 2) < (sprite_1.height + sprite_2.height)
         return (x_collision and y_collision)
 
+    def show_game_over(self):
+        self.state = "gameover"
+        self.hide_all_sprites()
+        print ("Game Over!")
+        self.state = "paused"
+
     def exit(self):
         self.stop_all_sounds()
-        exit()
+        os._exit(0)
 
     class Sprite(turtle.Turtle):
         def __init__(self, shape, color, x = 0, y = 0):
@@ -153,3 +187,16 @@ class SGE(object):
             self.shape(image)
             self.width = width
             self.height = height
+
+    class Label(turtle.Turtle):
+        def __init__(self, text, color, x = 0, y = 0):
+            turtle.Turtle.__init__(self)
+            self.hideturtle()
+            self.goto(x, y)
+            self.color(color)
+            if text != "":
+                self.write(text)
+
+        def update(self, text):
+            self.clear()
+            self.write(text)
