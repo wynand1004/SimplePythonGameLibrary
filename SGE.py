@@ -36,7 +36,8 @@ class SGE(object):
         turtle.title(title)
         turtle.tracer(0)
         turtle.listen() # Listen for keyboard input
-        turtle.hideturtle() # Hides defaut turtle in Python 2.x
+        turtle.hideturtle() # Hides default turtle in Python 2.x
+        turtle.penup() # Puts pen up for defaut turtle in Python 2.x
         turtle.setundobuffer(0) # Do not keep turtle history in memory
 
         # Attributes
@@ -192,6 +193,7 @@ class SGE(object):
         def __init__(self, text, color, x = 0, y = 0):
             turtle.Turtle.__init__(self)
             self.hideturtle()
+            self.penup()
             self.goto(x, y)
             self.color(color)
             if text != "":
