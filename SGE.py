@@ -103,7 +103,7 @@ class SGE(object):
             winsound.play(sound_file, winsound.SND_ASYNC)
         # Linux
         elif os.name == "posix":
-            os.system("aplay {}&".format(sound_file))
+            os.system("aplay -q {}&".format(sound_file))
         # Mac
         else:
             os.system("afplay {}&".format(sound_file))
