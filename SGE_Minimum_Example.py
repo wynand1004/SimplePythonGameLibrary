@@ -10,6 +10,8 @@ game = SGE(800, 600, "blue", "SGE Minimum Code Example by @TokyoEdTech AKA /u/wy
 
 # Create Sprites
 
+# Create Labels
+
 # Set Keyboard Bindings
 
 while True:
