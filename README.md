@@ -1,8 +1,6 @@
 
-# SGE (Version 0.4)
+# SGE (Version 0.5)
 A simple Python game engine used for creating simple 2D games.  It is built on the Python Turtle module and is compatible with Python 2.x and 3.x.
-
-**IT IS VERY MUCH A WORK IN PROGRESS**
 
 ## Overview:
 
