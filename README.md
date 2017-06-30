@@ -1,6 +1,5 @@
 
 # SGE (Version 0.5)
-A simple Python game engine used for creating simple 2D games.  It is built on the Python Turtle module and is compatible with Python 2.x and 3.x.
 
 ## Overview:
 
@@ -10,7 +9,7 @@ The purpose of the Simple Game Engine is to give beginning Python coders a simpl
 
  - Use only built-in modules
  - Python 2.x and 3.x compatibility
- - Cross-platform
+ - Cross-platform (Linux, Mac, and Windows)
 
 ## Getting Started
 Download the repository to your computer.  There are 3 demo files, SGE_Demo.py which is a simple game using primitives (triangles and circles).  Use the left arrow, right arrow, and up arrow to control the player.  There is also SGE_Minimal_Example.py contains a simple game framework which will create a window - use this as the basis of your own programs.  Finally, there is SGE_Space_Invaders.py, a simple demo I am working on to test SGE features. **Note:** I used tabs, not spaces.  
