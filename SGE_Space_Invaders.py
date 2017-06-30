@@ -1,6 +1,6 @@
 # SGE Space Invaders by @TokyoEdTech AKA /u/wynand1004
-
-# Import SGE (Version 0.4)
+# Requires SGE Version 0.5
+# Import SGE 
 from SGE import *
 
 # Create Classes
@@ -92,7 +92,7 @@ missile = Missile("triangle", "yellow", 10000, 10000)
 score_label = SGE.Label("Score: 0", "white", -380, 280)
 
 # Create Invaders (3 rows of 9)
-for row in range(1):
+for row in range(4):
     for column in range(9):
         x = -300 + (column * 75)
         y = 275 - (row * 75)

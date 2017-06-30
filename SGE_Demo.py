@@ -1,8 +1,8 @@
 # SGE Game Demo by @TokyoEdTech AKA /u/wynand1004
-# Requires SGE Version 0.4
+# Requires SGE Version 0.5
 # Navigate using the arrow keys
 # Green objects are worth 10 points
-# Yellow objects are worth 0 points
+# Yellow objects are worth 5 points
 # Red objects are worth -10 points
 from SGE import *
 
@@ -40,6 +40,11 @@ class Player(SGE.Sprite):
     def accelerate(self):
         self.speed += 0.5
 
+    def decelerate(self):
+        self.speed -= 0.5
+        if self.speed < 0:
+            self.speed = 0
+
 class Orb(SGE.Sprite):
     def __init__(self, shape, color, x, y):
         SGE.Sprite.__init__(self, shape, color, x, y)
@@ -69,8 +74,19 @@ class Orb(SGE.Sprite):
             self.goto(self.xcor(), game.SCREEN_HEIGHT / 2)
 
 # Initial Game setup
-game = SGE(800, 600, "blue", "SGE Game Demo 2 by @TokyoEdTech AKA /u/wynand1004")
+game = SGE(800, 600, "blue", "SGE Game Demo by @TokyoEdTech AKA /u/wynand1004")
 game.clear_terminal_screen()
+print (game.title)
+
+# Game attributes
+game.highscore = 0
+
+# Load high score
+data = game.load_data()
+if "highscore" in data:
+    game.highscore = data["highscore"]
+else:
+    game.highscore = 0
 
 # Create Sprites
 # Create Player
@@ -85,12 +101,14 @@ for i in range(100):
     orb.speed = speed
 
 # Create Labels
-score_label = SGE.Label("Score: 0", "white", -380, 280)
+score_label = SGE.Label("Score: 0 Highscore: {}".format(game.highscore), "white", -380, 280)
 
 # Set Keyboard Bindings
 game.set_keyboard_binding(SGE.KEY_UP, player.accelerate)
+game.set_keyboard_binding(SGE.KEY_DOWN, player.decelerate)
 game.set_keyboard_binding(SGE.KEY_LEFT, player.rotate_left)
 game.set_keyboard_binding(SGE.KEY_RIGHT, player.rotate_right)
+game.set_keyboard_binding(SGE.KEY_ESCAPE, game.exit)
 
 while True:
     # Call the game tick method
@@ -108,5 +126,14 @@ while True:
                     player.score -= 10
                 if sprite.pencolor() == "green":
                     player.score += 10
+                if sprite.pencolor() == "yellow":
+                    player.score += 5
+
                 # Update Score
-                score_label.update("Score: {}".format(player.score))
+                if player.score > game.highscore:
+                    game.highscore = player.score
+                    game.save_data("highscore", game.highscore)
+
+    speed_string = "-" * int(player.speed)
+
+    score_label.update("Score: {} High Score: {} Speed: {}".format(player.score, game.highscore, speed_string))

@@ -1,4 +1,4 @@
-# Simple Game Engine by @TokyoEdTech AKA /u/wynand1004
+# Simple Game Engine Version 0.5 by @TokyoEdTech AKA /u/wynand1004
 # Python 2.x and 3.x Compatible
 # Built on Top of the Turtle Module
 #
@@ -7,6 +7,7 @@ import turtle
 import time
 import random
 import math
+import pickle
 
 # If on Windows, import winsound or, better yet, switch to Linux!
 if os.name == "nt":
@@ -40,21 +41,28 @@ class SGE(object):
         turtle.penup() # Puts pen up for defaut turtle in Python 2.x
         turtle.setundobuffer(0) # Do not keep turtle history in memory
 
-        # Attributes
+        # Game Attributes
+        self.FPS = 30.0 # Lower this on slower computers or with large number of sprites
+        self.SCREEN_WIDTH = screen_width
+        self.SCREEN_HEIGHT = screen_height
+        self.DATAFILE= "game.dat"
+
         self.title = title
         self.gravity = 0
         self.state = "showsplash"
-        self.FPS = 30.0
-        self.SCREEN_WIDTH = screen_width
-        self.SCREEN_HEIGHT = screen_height
+        self.splash_time = 3
+
         self.time = time.time()
+
+        # Show splash
+        self.show_splash(self.splash_time)
 
     def tick(self):
         # Check the game state
         # showsplash, running, gameover, paused
 
         if self.state == "showsplash":
-            self.show_splash()
+            self.show_splash(self.splash_time)
 
         elif self.state == "paused":
             pass
@@ -71,15 +79,49 @@ class SGE(object):
         # Update the screen
         self.update_screen()
 
-    def show_splash(self):
+    def show_splash(self, seconds):
         # Show splash screen
         # To be implemented
+
+        print ("SHOW SPLASH SCREEN HERE")
+        self.update_screen()
+
+        # Pause
+        self.time = time.time()
+        while time.time() < self.time + (self.splash_time):
+            pass
+
+        # Hide Splash
+        self.clear_terminal_screen()
+
+        # Change state to running
         self.state = "running"
 
     def hide_all_sprites(self):
         for sprite in SGE.sprites:
             if sprite.state:
                 sprite.destroy()
+
+    def save_data(self, key, value):
+        # Load DATAFILE
+        try:
+            data = pickle.load(open(self.DATAFILE, "rb"))
+        except:
+            data = {}
+
+        data[key] = value
+
+        #Save DATAFILE
+        pickle.dump(data, open(self.DATAFILE, "wb"))
+
+    def load_data(self):
+        # Load DATAFILE
+        try:
+            data = pickle.load(open(self.DATAFILE, "rb"))
+        except:
+            data = {}
+
+        return data
 
     def set_title(self, title):
         turtle.title(title)
@@ -94,8 +136,9 @@ class SGE(object):
     def update_screen(self):
         while time.time() < self.time + (1.0 / self.FPS):
             pass
-        self.time = time.time()
         turtle.update()
+        self.time = time.time()
+
 
     def play_sound(self, sound_file):
         # Windows
