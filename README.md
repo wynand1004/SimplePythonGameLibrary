@@ -1,9 +1,9 @@
 
-# SGE (Version 0.5)
+# SPGL (Version 0.6)
 
 ## Overview:
 
-The purpose of the Simple Game Engine is to give beginning Python coders a simple framework to make basic 2D games.  It is intended as a simple alternative to Pygame. As it is built on the Turtle module, it has the same features and limitations of that module. It does not require any external libraries to be added.
+The purpose of the Simple Python Game Library is to give beginning Python coders a simple framework to make basic 2D games.  It is intended as an alternative to Pygame. As it is built on the Turtle module, it has the same features and limitations of that module. It does not require any external libraries to be added.
 
 **Design Principles**
 
@@ -12,11 +12,11 @@ The purpose of the Simple Game Engine is to give beginning Python coders a simpl
  - Cross-platform (Linux, Mac, and Windows)
 
 ## Getting Started
-Download the repository to your computer.  There are 3 demo files, SGE_Demo.py which is a simple game using primitives (triangles and circles).  Use the left arrow, right arrow, and up arrow to control the player.  There is also SGE_Minimal_Example.py contains a simple game framework which will create a window - use this as the basis of your own programs.  Finally, there is SGE_Space_Invaders.py, a simple demo I am working on to test SGE features. **Note:** I used tabs, not spaces.  
+Download the repository to your computer.  There are 3 demo files, SPGL_Demo.py which is a simple game using primitives (squares, triangles, arrows, and circles).  Use the arrow keys to control the player.  There is also SPGL_Minimal_Example.py contains a simple game framework which will create a window - use this as the basis of your own programs. **Note:** I used tabs, not spaces.  
 
 ## Performance
 
-I have tested this on Linux only at this point.  I know from experience that the turtle module on Mac is slower.  On my Linux machine, I can easily get 100 sprites moving around the screen at 30 frames per second. See the SGE_Demo.py program for an example.
+I have tested this on Linux only at this point.  I know from experience that the turtle module on Mac is slower.  On my Linux machine, I can easily get 100 sprites moving around the screen at 30 frames per second. See the SPGL_Demo.py program for an example.
 
 ## Known Issues
 
@@ -24,10 +24,11 @@ Image files need to be in .gif format.  This is a limitation of the turtle modul
 
 Sound files should be in .wav format for widest compatibility.
 
-On Windows, SGE uses the winsound module to play sounds.  I have not tested this yet as I do not have access to Windows at the moment.
+On Windows, SPGL uses the winsound module to play sounds.  I have not tested this yet as I do not have access to Windows at the moment.
 
-## Documentation Available on the [Wiki](https://github.com/wynand1004/SGE/wiki)
+## Documentation Available on the [Wiki](https://github.com/wynand1004/SPGL/wiki)
+
+Subscribe to my [YouTube Channel](https://www.youtube.com/channel/UC2vm-0XX5RkWCXWwtBZGOXg)
 
 Follow me on Twitter [@tokyoedtech](https://twitter.com/tokyoedtech)
 
-Various tutorials available on my [YouTube Channel](https://www.youtube.com/channel/UC2vm-0XX5RkWCXWwtBZGOXg)
