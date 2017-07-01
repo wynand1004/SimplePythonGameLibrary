@@ -12,7 +12,7 @@ The purpose of the Simple Python Game Library is to give beginning Python coders
  - Cross-platform (Linux, Mac, and Windows)
 
 ## Getting Started
-Download the repository to your computer.  There are 3 demo files, SPGL_Demo.py which is a simple game using primitives (squares, triangles, arrows, and circles).  Use the arrow keys to control the player.  There is also SPGL_Minimal_Example.py contains a simple game framework which will create a window - use this as the basis of your own programs. **Note:** I used tabs, not spaces.  
+Download the repository to your computer.  There are 2 demo files, SPGL_Demo.py which is a simple game using primitives (squares, triangles, arrows, and circles).  Use the arrow keys to control the player.  There is also SPGL_Minimal_Example.py contains a simple game framework which will create a window - use this as the basis of your own programs. **Note:** I used tabs, not spaces.  
 
 ## Performance
 
