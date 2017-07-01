@@ -20,11 +20,11 @@ I have tested this on Linux only at this point.  I know from experience that the
 
 ## Known Issues
 
-Image files need to be in .gif format.  This is a limitation of the turtle module.
+ - Image files need to be in .gif format.  This is a limitation of the turtle module.
 
-Sound files should be in .wav format for widest compatibility.
+ - Sound files should be in .wav format for widest compatibility.
 
-On Windows, SPGL uses the winsound module to play sounds.  I have not tested this yet as I do not have access to Windows at the moment.
+ - On Windows, SPGL uses the winsound module to play sounds.  I have not tested this yet as I do not have access to Windows at the moment.
 
 ## Documentation Available on the [Wiki](https://github.com/wynand1004/SPGL/wiki)
 
