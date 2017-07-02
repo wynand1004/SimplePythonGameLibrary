@@ -9,13 +9,13 @@
 # Red objects are worth -10 points
 
 #Import SPGL
-import SPGL
+from SPGL import *
 import random
 
 # Create Classes
-class Player(SPGL.Sprite):
+class Player(Sprite):
     def __init__(self, shape, color, x, y):
-        SPGL.Sprite.__init__(self, shape, color, x, y)
+        Sprite.__init__(self, shape, color, x, y)
         self.speed = 3
         self.score = 0
 
@@ -51,9 +51,9 @@ class Player(SPGL.Sprite):
         if self.speed < 0:
             self.speed = 0
 
-class Orb(SPGL.Sprite):
+class Orb(Sprite):
     def __init__(self, shape, color, x, y):
-        SPGL.Sprite.__init__(self, shape, color, x, y)
+        Sprite.__init__(self, shape, color, x, y)
         self.speed = 2
         self.setheading(random.randint(0,360))
         self.turn = 0
@@ -80,7 +80,7 @@ class Orb(SPGL.Sprite):
             self.goto(self.xcor(), game.SCREEN_HEIGHT / 2)
 
 # Initial Game setup
-game = SPGL.Game(800, 600, "black", "SPGL Game Demo by /u/wynand1004 AKA @TokyoEdTech", 5)
+game = Game(800, 600, "black", "SPGL Game Demo by /u/wynand1004 AKA @TokyoEdTech", 5)
 
 # Game attributes
 game.highscore = 0
@@ -105,16 +105,16 @@ for i in range(100):
     orb.speed = speed
 
 # Create Labels
-score_label = SPGL.Label("Score: 0 Highscore: {}".format(game.highscore), "white", -380, 280)
+score_label = Label("Score: 0 Highscore: {}".format(game.highscore), "white", -380, 280)
 
 # Create Buttons
 
 # Set Keyboard Bindings
-game.set_keyboard_binding(SPGL.KEY_UP, player.accelerate)
-game.set_keyboard_binding(SPGL.KEY_DOWN, player.decelerate)
-game.set_keyboard_binding(SPGL.KEY_LEFT, player.rotate_left)
-game.set_keyboard_binding(SPGL.KEY_RIGHT, player.rotate_right)
-game.set_keyboard_binding(SPGL.KEY_ESCAPE, game.exit)
+game.set_keyboard_binding(KEY_UP, player.accelerate)
+game.set_keyboard_binding(KEY_DOWN, player.decelerate)
+game.set_keyboard_binding(KEY_LEFT, player.rotate_left)
+game.set_keyboard_binding(KEY_RIGHT, player.rotate_right)
+game.set_keyboard_binding(KEY_ESCAPE, game.exit)
 
 while True:
     # Call the game tick method
