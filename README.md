@@ -16,7 +16,7 @@ Download the repository to your computer.  There are 2 demo files, SPGL_Demo.py 
 
 ## Performance
 
-I have tested this on Linux only at this point.  I know from experience that the turtle module on Mac is slower.  On my Linux machine, I can easily get 100 sprites moving around the screen at 30 frames per second. See the SPGL_Demo.py program for an example.
+I have tested this on Linux only at this point.  I know from experience that the turtle module on Mac is slower.  On my Linux machine, I can easily get 100 sprites moving around the screen at 30 frames per second. See the SPGL_Demo.py program for an example. 
 
 ## Known Issues
 
@@ -24,12 +24,14 @@ I have tested this on Linux only at this point.  I know from experience that the
 
  - Sound files should be in .wav format for widest compatibility.
 
-## Documentation Available on the [Wiki](https://github.com/wynand1004/SPGL/wiki)
+## Documentation 
+
+ - Available on the [Wiki](https://github.com/wynand1004/SPGL/wiki)
 
 ## Connect with Me
 
-Subscribe to my [YouTube Channel](https://www.youtube.com/channel/UC2vm-0XX5RkWCXWwtBZGOXg).
+ - Subscribe to my [YouTube Channel](https://www.youtube.com/channel/UC2vm-0XX5RkWCXWwtBZGOXg).
 
-Follow me on Twitter - [@tokyoedtech](https://twitter.com/tokyoedtech).
+ - Follow me on Twitter - [@tokyoedtech](https://twitter.com/tokyoedtech).
 
-Check out my [blog](http://www.christianthompson.com/).
+ - Check out my [blog](http://www.christianthompson.com/).
