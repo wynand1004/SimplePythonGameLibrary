@@ -23,17 +23,17 @@ if os.name == "nt":
     except:
         print ("Winsound module not available.")
 
-# SPGL Class
-class SPGL(object):
 
-    # Class Constants
-    # Use for Keyboard Bindings
-    KEY_UP = "Up"
-    KEY_DOWN = "Down"
-    KEY_LEFT = "Left"
-    KEY_RIGHT = "Right"
-    KEY_SPACE = "space"
-    KEY_ESCAPE = "Escape"
+# Use for Keyboard Bindings
+KEY_UP = "Up"
+KEY_DOWN = "Down"
+KEY_LEFT = "Left"
+KEY_RIGHT = "Right"
+KEY_SPACE = "space"
+KEY_ESCAPE = "Escape"
+
+# Game Class
+class Game(object):
 
     # Keep List of Sprites
     sprites = []
@@ -99,10 +99,10 @@ class SPGL(object):
 
     def print_error_logs(self):
         print ("Error Logs:")
-        for error in SPGL.logs:
+        for error in Game.logs:
             print (error)
 
-        if len(SPGL.logs) == 0:
+        if len(Game.logs) == 0:
             print ("No errors")
         print ("")
 
@@ -121,12 +121,12 @@ class SPGL(object):
 
         else:
             # Iterate through all sprites and call their tick method
-            for sprite in SPGL.sprites:
+            for sprite in Game.sprites:
                 if sprite.state:
                     sprite.tick()
 
             # Iterate through all labels and call their update method
-            for label in SPGL.labels:
+            for label in Game.labels:
                 if label.text != "":
                     label.tick()
 
@@ -155,13 +155,13 @@ class SPGL(object):
             turtle.bgpic("")
 
         except:
-            SPGL.logs.append("Warning: {} missing from disk.".format(self.SPLASHFILE))
+            Game.logs.append("Warning: {} missing from disk.".format(self.SPLASHFILE))
 
         # Change state to running
         self.state = "running"
 
     def destroy_all_sprites(self):
-        for sprite in SPGL.sprites:
+        for sprite in Game.sprites:
             if sprite.state:
                 sprite.destroy()
 
@@ -171,7 +171,7 @@ class SPGL(object):
             data = pickle.load(open(self.DATAFILE, "rb"))
         except:
             data = {}
-            SPGL.logs.append("Warning: Creating new {} file on disk.".format(self.DATAFILE))
+            Game.logs.append("Warning: Creating new {} file on disk.".format(self.DATAFILE))
 
         data[key] = value
 
@@ -184,7 +184,7 @@ class SPGL(object):
             data = pickle.load(open(self.DATAFILE, "rb"))
         except:
             data = {}
-            SPGL.logs.append("Warning: {} missing from disk.".format(self.DATAFILE))
+            Game.logs.append("Warning: {} missing from disk.".format(self.DATAFILE))
 
         if key in data:
             return data[key]
@@ -207,7 +207,7 @@ class SPGL(object):
     def play_sound(self, sound_file):
         # Windows
         if os.name == 'nt':
-            winsound.play(sound_file, winsound.SND_ASYNC)
+            winsound.PlaySound(sound_file, winsound.SND_ASYNC)
         # Linux
         elif os.name == "posix":
             os.system("aplay -q {}&".format(sound_file))
@@ -218,7 +218,7 @@ class SPGL(object):
     def stop_all_sounds(self):
         # Windows
         if os.name == 'nt':
-            SPGL.logs.append("Warning: .stop_all_sounds not implemened on Windows yet.")
+            Game.logs.append("Warning: .stop_all_sounds not implemened on Windows yet.")
         # Linux
         elif os.name == "posix":
             os.system("killall aplay")
@@ -242,14 +242,14 @@ class SPGL(object):
 
         # Calcuate number of active sprites
         active_sprites = 0
-        for sprite in SPGL.sprites:
+        for sprite in Game.sprites:
             if sprite.state:
                 active_sprites += 1
 
-        print ("Number of Sprites (Active / Total): {} / {}".format(active_sprites, len(SPGL.sprites)))
+        print ("Number of Sprites (Active / Total): {} / {}".format(active_sprites, len(Game.sprites)))
 
-        print ("Number of Labels: {}".format(len(SPGL.labels)))
-        print ("Number of Buttons: {}".format(len(SPGL.buttons)))
+        print ("Number of Labels: {}".format(len(Game.labels)))
+        print ("Number of Buttons: {}".format(len(Game.buttons)))
         print ("")
         print ("Frames Per Second (Target): {}".format(self.FPS))
         print ("")
@@ -271,150 +271,150 @@ class SPGL(object):
         self.stop_all_sounds()
         os._exit(0)
 
-    # Sprite Class
-    class Sprite(turtle.Turtle):
-        def __init__(self,
-                    shape,
-                    color,
-                    x = 0,
-                    y = 0,
-                    width = 20,
-                    height = 20):
+# Sprite Class
+class Sprite(turtle.Turtle):
+    def __init__(self,
+                shape,
+                color,
+                x = 0,
+                y = 0,
+                width = 20,
+                height = 20):
 
-            turtle.Turtle.__init__(self)
-            self.speed(0) # Animation Speed
-            # Register shape if it is a .gif file
-            if shape.endswith(".gif"):
-                try:
-                    turtle.register_shape(shape)
-                except:
-                    SPGL.logs.append("Warning: {} file missing from disk.".format(shape))
+        turtle.Turtle.__init__(self)
+        self.speed(0) # Animation Speed
+        # Register shape if it is a .gif file
+        if shape.endswith(".gif"):
+            try:
+                turtle.register_shape(shape)
+            except:
+                Game.logs.append("Warning: {} file missing from disk.".format(shape))
 
-                    # Set placeholder shape
-                    shape = "square"
-                    width = 20 # This is the default for turtle module primitives
-                    height = 20 # This is the default for turtle module primitives
+                # Set placeholder shape
+                shape = "square"
+                width = 20 # This is the default for turtle module primitives
+                height = 20 # This is the default for turtle module primitives
 
-            self.shape(shape)
-            self.color(color)
-            self.penup()
-            self.goto(x, y)
+        self.shape(shape)
+        self.color(color)
+        self.penup()
+        self.goto(x, y)
 
-            # Attributes
-            self.width = width
-            self.height = width
+        # Attributes
+        self.width = width
+        self.height = width
 
-            self.speed = 0.0 # Speed of motion
-            self.dx = 0.0
-            self.dy = 0.0
-            self.acceleration = 0.0
-            self.friction = 0.0
+        self.speed = 0.0 # Speed of motion
+        self.dx = 0.0
+        self.dy = 0.0
+        self.acceleration = 0.0
+        self.friction = 0.0
 
-            self.state = "active"
-            self.solid = True
+        self.state = "active"
+        self.solid = True
 
-            # Append to master sprite list
-            SPGL.sprites.append(self)
+        # Append to master sprite list
+        Game.sprites.append(self)
 
-        def tick(self):
-            # This is the function that is called each frame of the game
-            # For most sprites, you'll want to call the move method here
-            # self.move()
-            pass
+    def tick(self):
+        # This is the function that is called each frame of the game
+        # For most sprites, you'll want to call the move method here
+        # self.move()
+        pass
 
-        def move(self):
-            self.fd(self.speed)
+    def move(self):
+        self.fd(self.speed)
 
-        def destroy(self):
-            # When a sprite is destoyed move it off screen, hide it, and set state to None
-            # This is a workaround as there is no way to delete a sprite from memory in the turtle module.
-            self.hideturtle()
-            self.goto(10000, 10000)
-            self.state = None
+    def destroy(self):
+        # When a sprite is destoyed move it off screen, hide it, and set state to None
+        # This is a workaround as there is no way to delete a sprite from memory in the turtle module.
+        self.hideturtle()
+        self.goto(10000, 10000)
+        self.state = None
 
-        def set_image(self, image, width, height):
-            # Allows the use of custom images (must be .gif) due to turtle/tkinter limitation
-            # Register shape if it is a .gif file
-            if image.endswith(".gif"):
-                try:
-                    turtle.register_shape(image)
-                except:
-                    SPGL.logs.append("Warning: {} file missing from disk.".format(image))
+    def set_image(self, image, width, height):
+        # Allows the use of custom images (must be .gif) due to turtle/tkinter limitation
+        # Register shape if it is a .gif file
+        if image.endswith(".gif"):
+            try:
+                turtle.register_shape(image)
+            except:
+                Game.logs.append("Warning: {} file missing from disk.".format(image))
 
-                    # Set placeholder shape
-                    shape = "square"
-                    width = 20 # This is the default for turtle module primitives
-                    height = 20 # This is the default for turtle module primitives
+                # Set placeholder shape
+                shape = "square"
+                width = 20 # This is the default for turtle module primitives
+                height = 20 # This is the default for turtle module primitives
 
-            self.shape(image)
-            self.width = width
-            self.height = height
+        self.shape(image)
+        self.width = width
+        self.height = height
 
-    #Label Class
-    class Label(turtle.Turtle):
-        def __init__(self,
-                    text,
-                    color,
-                    x = 0,
-                    y = 0):
+#Label Class
+class Label(turtle.Turtle):
+    def __init__(self,
+                text,
+                color,
+                x = 0,
+                y = 0):
 
-            turtle.Turtle.__init__(self)
-            self.hideturtle()
-            self.penup()
-            self.goto(x, y)
-            self.color(color)
+        turtle.Turtle.__init__(self)
+        self.hideturtle()
+        self.penup()
+        self.goto(x, y)
+        self.color(color)
 
-            # Attributes
-            self.text = text
+        # Attributes
+        self.text = text
 
-            # Append to master label list
-            SPGL.labels.append(self)
+        # Append to master label list
+        Game.labels.append(self)
 
-        def tick(self):
-            self.clear()
-            self.write(self.text)
+    def tick(self):
+        self.clear()
+        self.write(self.text)
 
-        def update(self, text):
-            self.text = text
-            self.tick()
+    def update(self, text):
+        self.text = text
+        self.tick()
 
-    #Button Class
-    class Button(turtle.Turtle):
-        def __init__(self,
-                    shape,
-                    color,
-                    x = 0,
-                    y = 0):
+#Button Class
+class Button(turtle.Turtle):
+    def __init__(self,
+                shape,
+                color,
+                x = 0,
+                y = 0):
 
-            turtle.Turtle.__init__(self)
-            # self.hideturtle()
-            self.penup()
-            # Register shape if it is a .gif file
-            if shape.endswith(".gif"):
-                try:
-                    turtle.register_shape(shape)
-                except:
-                    SPGL.logs.append("Warning: {} file missing from disk.".format(shape))
+        turtle.Turtle.__init__(self)
+        # self.hideturtle()
+        self.penup()
+        # Register shape if it is a .gif file
+        if shape.endswith(".gif"):
+            try:
+                turtle.register_shape(shape)
+            except:
+                Game.logs.append("Warning: {} file missing from disk.".format(shape))
 
-                    # Set placeholder shape
-                    shape = "square"
+                # Set placeholder shape
+                shape = "square"
 
-            self.shape(shape)
-            self.color(color)
-            self.goto(x, y)
+        self.shape(shape)
+        self.color(color)
+        self.goto(x, y)
 
-            #Set click binding
-            self.onclick(self.click)
+        #Set click binding
+        self.onclick(self.click)
 
-            # Append to master button list
-            SPGL.buttons.append(self)
+        # Append to master button list
+        Game.buttons.append(self)
 
-        def set_image(self, image):
-            # Allows the use of custom images (must be .gif) due to turtle/tkinter limitation
-            turtle.register_shape(image)
-            self.shape(image)
-            # Click binding needs to be set again after image change
-            self.onclick(self.click)
+    def set_image(self, image):
+        # Allows the use of custom images (must be .gif) due to turtle/tkinter limitation
+        turtle.register_shape(image)
+        self.shape(image)
+        # Click binding needs to be set again after image change
+        self.onclick(self.click)
 
-        def click(self, x, y):
-            print ("The button was clicked at ({},{})".format(x, y))
+    def click(self, x, y):
+        print ("The button was clicked at ({},{})".format(x, y))
