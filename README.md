@@ -28,8 +28,8 @@ I have tested this on Linux only at this point.  I know from experience that the
 
 ## Connect with Me
 
-Subscribe to my [YouTube Channel](https://www.youtube.com/channel/UC2vm-0XX5RkWCXWwtBZGOXg)
+Subscribe to my [YouTube Channel](https://www.youtube.com/channel/UC2vm-0XX5RkWCXWwtBZGOXg).
 
-Follow me on Twitter: [@tokyoedtech](https://twitter.com/tokyoedtech)
+Follow me on Twitter - [@tokyoedtech](https://twitter.com/tokyoedtech).
 
-Check out my [blog](http://www.christianthompson.com/)
+Check out my [blog](http://www.christianthompson.com/).
