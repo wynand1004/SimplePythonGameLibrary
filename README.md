@@ -26,7 +26,10 @@ I have tested this on Linux only at this point.  I know from experience that the
 
 ## Documentation Available on the [Wiki](https://github.com/wynand1004/SPGL/wiki)
 
+## Connect with Me
+
 Subscribe to my [YouTube Channel](https://www.youtube.com/channel/UC2vm-0XX5RkWCXWwtBZGOXg)
 
-Follow me on Twitter [@tokyoedtech](https://twitter.com/tokyoedtech)
+Follow me on Twitter: [@tokyoedtech](https://twitter.com/tokyoedtech)
 
+Check out my [blog](http://www.christianthompson.com/)
