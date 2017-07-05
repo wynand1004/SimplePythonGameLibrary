@@ -359,23 +359,30 @@ class Label(turtle.Turtle):
                 text,
                 color,
                 x = 0,
-                y = 0):
+                y = 0,
+                font_name = "Arial",
+                font_size = 12,
+                font_type = "normal",
+                align = "left"):
 
         turtle.Turtle.__init__(self)
         self.hideturtle()
         self.penup()
         self.goto(x, y)
         self.color(color)
+        self.font = (font_name, font_size, font_type)
+        self.align = align
 
         # Attributes
         self.text = text
+
 
         # Append to master label list
         Game.labels.append(self)
 
     def tick(self):
         self.clear()
-        self.write(self.text)
+        self.write(self.text, False, align =self.align, font = self.font)
 
     def update(self, text):
         self.text = text
