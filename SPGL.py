@@ -204,7 +204,7 @@ class Game(object):
         turtle.update()
         self.time = time.time()
 
-    def play_sound(self, sound_file):
+    def play_sound(self, sound_file, time = 0):
         # Windows
         if os.name == 'nt':
             winsound.PlaySound(sound_file, winsound.SND_ASYNC)
@@ -214,6 +214,9 @@ class Game(object):
         # Mac
         else:
             os.system("afplay {}&".format(sound_file))
+
+        if time > 0:
+	        turtle.ontimer(lambda: self.play_sound(sound_file, time), t=int(time * 1000))
 
     def stop_all_sounds(self):
         # Windows
