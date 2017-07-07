@@ -22,7 +22,7 @@ I have tested this on Linux only at this point.  I know from experience that the
 
  - Image files need to be in .gif format.  This is a limitation of the turtle module.
 
- - Sound files should be in .wav format for widest compatibility.
+ - Sound files should be in .wav format for widest compatibility. Compatibility with other formats (.ogg, .mp3, etc.) will vary widely based on the operating system and installed codecs.
 
 ## Documentation 
 
