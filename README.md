@@ -7,7 +7,7 @@ The purpose of the Simple Python Game Library is to give beginning Python coders
 
 **Design Principles**
 
- - Use only built-in modules
+ - Use only standard modules
  - Python 2.x and 3.x compatibility
  - Cross-platform (Linux, Mac, and Windows)
 
