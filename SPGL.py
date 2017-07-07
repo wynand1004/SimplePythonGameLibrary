@@ -1,4 +1,4 @@
-# Simple Python Game Library Version 0.6 by /u/wynand1004 AKA @TokyoEdTech
+# Simple Python Game Library Version 0.7 by /u/wynand1004 AKA @TokyoEdTech
 # Documentation on Github: https://wynand1004.github.io/SPGL
 # Python 2.x and 3.x Compatible
 
@@ -99,11 +99,14 @@ class Game(object):
 
     def print_error_logs(self):
         print ("Error Logs:")
-        for error in Game.logs:
-            print (error)
 
         if len(Game.logs) == 0:
             print ("No errors")
+        else:
+            for error in Game.logs:
+                print (error)
+
+
         print ("")
 
     def tick(self):
@@ -196,7 +199,12 @@ class Game(object):
         self.title = title
 
     def set_keyboard_binding(self, key, function):
-        turtle.onkey(function, key)
+        #Python 3
+        try:
+            turtle.onkeypress(function, key)
+        #Python 2
+        except:
+            turtle.onkey(function, key)
 
     def update_screen(self):
         while time.time() < self.time + (1.0 / self.FPS):
@@ -264,6 +272,17 @@ class Game(object):
         y_collision = (math.fabs(sprite_1.ycor() - sprite_2.ycor()) * 2) < (sprite_1.height + sprite_2.height)
         return (x_collision and y_collision)
 
+    def is_circle_collision(sprite_1, sprite_2, distance):
+        # Collision based on distance
+    	a=sprite_1.xcor()-sprite_2.xcor()
+    	b=sprite_1.ycor()-sprite_2.ycor()
+    	distance = math.sqrt((a**2) + (b**2))
+
+    	if distance < distance:
+    		return True
+    	else:
+    		return False
+
     def show_game_over(self):
         self.state = "gameover"
         self.hide_all_sprites()
@@ -316,6 +335,9 @@ class Sprite(turtle.Turtle):
         self.state = "active"
         self.solid = True
 
+        #Set click binding
+        self.onclick(self.click)
+
         # Append to master sprite list
         Game.sprites.append(self)
 
@@ -352,6 +374,12 @@ class Sprite(turtle.Turtle):
         self.shape(image)
         self.width = width
         self.height = height
+
+        # Click binding needs to be set again after image change
+        self.onclick(self.click)
+
+    def click(self, x, y):
+        print ("The sprite was clicked at ({},{})".format(x, y))
 
 #Label Class
 class Label(turtle.Turtle):
@@ -420,9 +448,19 @@ class Button(turtle.Turtle):
         Game.buttons.append(self)
 
     def set_image(self, image):
+        # Register shape if it is a .gif file
+        if shape.endswith(".gif"):
+            try:
+                turtle.register_shape(shape)
+            except:
+                Game.logs.append("Warning: {} file missing from disk.".format(shape))
+
+                # Set placeholder shape
+                shape = "square"
+
         # Allows the use of custom images (must be .gif) due to turtle/tkinter limitation
-        turtle.register_shape(image)
         self.shape(image)
+
         # Click binding needs to be set again after image change
         self.onclick(self.click)
 
