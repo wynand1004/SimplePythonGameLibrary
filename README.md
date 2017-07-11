@@ -1,5 +1,5 @@
 
-# SPGL (Version 0.7)
+# SPGL (Version 0.7.1)
 
 ## Overview:
 
@@ -16,7 +16,7 @@ Download the repository to your computer.  There are 2 demo files, SPGL_Demo.py 
 
 ## Performance
 
-I have tested this on Linux only at this point.  I know from experience that the turtle module on Mac is slower.  On my Linux machine, I can easily get 100 sprites moving around the screen at 30 frames per second. See the SPGL_Demo.py program for an example. 
+I have tested this on Linux and Windows only at this point.  I know from experience that the turtle module on Mac is slower.  On my Linux machine, I can easily get 100 sprites moving around the screen at 30 frames per second. See the SPGL_Demo.py program for an example. 
 
 ## Known Issues
 
