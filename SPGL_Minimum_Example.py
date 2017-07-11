@@ -8,6 +8,8 @@ import SPGL
 
 # Create Classes
 
+# Create Functions
+
 # Initial Game setup
 game = SPGL.Game(800, 600, "black", "SPGL Minimum Code Example by /u/wynand1004 AKA @TokyoEdTech")
 

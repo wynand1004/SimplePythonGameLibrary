@@ -1,4 +1,4 @@
-# Simple Python Game Library Version 0.7 by /u/wynand1004 AKA @TokyoEdTech
+# Simple Python Game Library Version 0.7.1 by /u/wynand1004 AKA @TokyoEdTech
 # Documentation on Github: https://wynand1004.github.io/SPGL
 # Python 2.x and 3.x Compatible
 
@@ -31,6 +31,27 @@ KEY_LEFT = "Left"
 KEY_RIGHT = "Right"
 KEY_SPACE = "space"
 KEY_ESCAPE = "Escape"
+KEY_ENTER = "Return"
+KEY_RETURN = "Return"
+KEY_SHIFT_LEFT = "Shift_L"
+KEY_SHIFT_RIGHT = "Shift_R"
+KEY_CONTROL_LEFT = "Control_L"
+KEY_CONTROL_RIGHT = "Control_R"
+KEY_ALT_LEFT = "Alt_L"
+KEY_ALT_RIGHT = "Alt_L"
+KEY_CAPS_LOCK = "Caps_Lock"
+KEY_F1 = "F1"
+KEY_F2 = "F2"
+KEY_F3 = "F3"
+KEY_F4 = "F4"
+KEY_F5 = "F5"
+KEY_F6 = "F6"
+KEY_F7 = "F7"
+KEY_F8 = "F8"
+KEY_F9 = "F9"
+KEY_F10 = "F10"
+KEY_F11 = "F11"
+KEY_F12 = "F12"
 
 # Game Class
 class Game(object):
@@ -52,7 +73,7 @@ class Game(object):
                 screen_width = 800,
                 screen_height = 600,
                 background_color = "black",
-                title = "Simple Game Engine by /u/wynand1004 AKA @TokyoEdTech",
+                title = "Simple Game Library by /u/wynand1004 AKA @TokyoEdTech",
                 splash_time = 3):
 
         # Setup using Turtle module methods
@@ -96,6 +117,18 @@ class Game(object):
 
     def show_warning(self, title, message):
         return messagebox.showwarning(title, message)
+
+    def show_error(self, title, message):
+        return messagebox.showerror(title, message)
+
+    def ask_question(self, title, message):
+        return messagebox.askquestion(title, message)
+
+    def ask_ok_cancel(self, title, message):
+        return messagebox.askokcancel(title, message)
+
+    def ask_retry_cancel(self, title, message):
+        return messagebox.askretrycancel(title, message)
 
     def print_error_logs(self):
         print ("Error Logs:")
