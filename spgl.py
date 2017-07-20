@@ -1,4 +1,4 @@
-# Simple Python Game Library Version 0.8 by /u/wynand1004 AKA @TokyoEdTech
+# Simple Python Game Library Version 0.8.1 by /u/wynand1004 AKA @TokyoEdTech
 # Documentation on Github: https://wynand1004.github.io/SPGL
 # Python 2.x and 3.x Compatible
 
@@ -15,6 +15,13 @@ try:
     import tkMessageBox as messagebox
 except:
     from tkinter import messagebox
+
+# Import filedialog
+try:
+	from tkinter import filedialog
+except:
+	import tkFileDialog as filedialog
+
 
 # If on Windows, import winsound or, better yet, switch to Linux!
 if os.name == "nt":
@@ -129,6 +136,9 @@ class Game(object):
 
     def ask_retry_cancel(self, title, message):
         return messagebox.askretrycancel(title, message)
+
+    def ask_open_filename(self):
+        return filedialog.askopenfilename()
 
     def print_error_logs(self):
         print ("Error Logs:")
