@@ -1,5 +1,5 @@
 # SPGL Game Demo by /u/wynand1004 AKA @TokyoEdTech
-# Requires SPGL Version 0.7
+# Requires SPGL Version 0.8
 # SPGL Documentation on Github: https://wynand1004.github.io/SPGL
 #
 # How to Play
@@ -9,7 +9,7 @@
 # Red objects are worth -10 points
 
 #Import SPGL
-from SPGL import *
+from spgl import *
 import random
 
 # Create Classes
