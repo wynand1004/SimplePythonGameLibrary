@@ -1,5 +1,5 @@
 
-# SPGL (Version 0.8.1)
+# SPGL (Version 0.8.2)
 
 ## Overview:
 
