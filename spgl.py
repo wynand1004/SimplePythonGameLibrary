@@ -1,4 +1,4 @@
-# Simple Python Game Library Version 0.8.1 by /u/wynand1004 AKA @TokyoEdTech
+# Simple Python Game Library Version 0.8.2 by /u/wynand1004 AKA @TokyoEdTech
 # Documentation on Github: https://wynand1004.github.io/SPGL
 # Python 2.x and 3.x Compatible
 
@@ -8,6 +8,7 @@ import time
 import random
 import math
 import pickle
+import platform
 
 # Import message box
 # This code is necessary for Python 2.x and 3.x compatibility
@@ -24,7 +25,7 @@ except:
 
 
 # If on Windows, import winsound or, better yet, switch to Linux!
-if os.name == "nt":
+if platform.system() == "Windows":
     try:
         import winsound
     except:
@@ -257,10 +258,10 @@ class Game(object):
 
     def play_sound(self, sound_file, time = 0):
         # Windows
-        if os.name == 'nt':
+        if platform.system() == 'Windows':
             winsound.PlaySound(sound_file, winsound.SND_ASYNC)
         # Linux
-        elif os.name == "posix":
+        elif platform.system() == "Linux":
             os.system("aplay -q {}&".format(sound_file))
         # Mac
         else:
@@ -271,10 +272,10 @@ class Game(object):
 
     def stop_all_sounds(self):
         # Windows
-        if os.name == 'nt':
+        if platform.system() == 'Windows':
             Game.logs.append("Warning: .stop_all_sounds not implemened on Windows yet.")
         # Linux
-        elif os.name == "posix":
+        elif platform.system() == "Linux":
             os.system("killall aplay")
         # Mac
         else:
@@ -282,7 +283,7 @@ class Game(object):
 
     def clear_terminal_screen(self):
         # Windows
-    	if os.name == 'nt':
+    	if platform.system() == 'Windows':
     		os.system("cls")
         # Linux and Mac
     	else:
