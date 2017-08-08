@@ -12,11 +12,11 @@ The purpose of the Simple Python Game Library is to give beginning Python coders
  - Cross-platform (Linux, Mac, and Windows)
 
 ## Getting Started
-Download the repository to your computer.  There are 2 demo files, SPGL_Demo.py which is a simple game using primitives (squares, triangles, arrows, and circles).  Use the arrow keys to control the player.  There is also SPGL_Minimal_Example.py which contains a simple game framework which will create a window - use this as the basis of your own programs. **Note:** I used tabs, not spaces.  
+Download the repository to your computer.  There are 2 demo files, SPGL_Demo.py which is a simple game using primitives (squares, triangles, arrows, and circles).  Use the arrow keys to control the player.  There is also SPGL_Minimal_Example.py which contains a simple game framework which will create a window - use this as the basis of your own programs. 
 
 ## Performance
 
-I have tested this on Linux and Windows only at this point.  I know from experience that the turtle module on Mac is slower.  On my Linux machine, I can easily get 100 sprites moving around the screen at 30 frames per second. See the SPGL_Demo.py program for an example. 
+On my Linux machine, I can easily get 100 sprites moving around the screen at 30 frames per second. See the [SPGL_Demo2.py](https://github.com/wynand1004/SPGL/blob/master/SPGL_Demo2.py) program for an example. 
 
 ## Known Issues
 
