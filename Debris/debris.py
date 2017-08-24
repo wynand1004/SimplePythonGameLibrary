@@ -19,19 +19,25 @@
 #Import SPGL
 import spgl
 import random
+import math
 
 # Create Classes
 class Player(spgl.Sprite):
     def __init__(self, shape, color, x, y):
         spgl.Sprite.__init__(self, shape, color, x, y)
+        self.shapesize(stretch_wid=0.6, stretch_len=1.1, outline=None)
         self.speed = 3
         self.score = 0
+        self.thrust = 1
+        self.dx = 0
+        self.dy = 0
+        self.rotation_speed = 0
 
     def tick(self):
         self.move()
 
     def move(self):
-        self.fd(self.speed)
+        player.goto(player.xcor()+self.dx, player.ycor()+self.dy)
 
         if self.xcor() > game.SCREEN_WIDTH / 2:
             self.goto(-game.SCREEN_WIDTH / 2, self.ycor())
@@ -46,18 +52,19 @@ class Player(spgl.Sprite):
             self.goto(self.xcor(), game.SCREEN_HEIGHT / 2)
 
     def rotate_left(self):
-        self.lt(30)
+        self.rotation_speed = 30
+        h = self.heading() + self.rotation_speed
+        player.setheading(h)
 
     def rotate_right(self):
-        self.rt(30)
+        self.rotation_speed = -30
+        h = self.heading() + self.rotation_speed
+        player.setheading(h)
 
     def accelerate(self):
-        self.speed += 1
-
-    def decelerate(self):
-        self.speed -= 1
-        if self.speed < 0:
-            self.speed = 0
+        h = player.heading()
+        self.dx += math.cos(h*math.pi/180)*self.thrust
+        self.dy += math.sin(h*math.pi/180)*self.thrust
 
 class Orb(spgl.Sprite):
     def __init__(self, shape, color, x, y):
@@ -191,7 +198,6 @@ score_label = spgl.Label("Score: 0 Highscore: {}".format(game.highscore), "white
 
 # Set Keyboard Bindings
 game.set_keyboard_binding(spgl.KEY_UP, player.accelerate)
-game.set_keyboard_binding(spgl.KEY_DOWN, player.decelerate)
 game.set_keyboard_binding(spgl.KEY_LEFT, player.rotate_left)
 game.set_keyboard_binding(spgl.KEY_RIGHT, player.rotate_right)
 game.set_keyboard_binding(spgl.KEY_SPACE, missile.fire)
