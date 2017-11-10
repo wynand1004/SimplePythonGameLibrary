@@ -1,6 +1,6 @@
 # SPGL Minimal Code by /u/wynand1004 AKA @TokyoEdTech
 # Requires SPGL Version 0.8 or Above
-# SPGL Documentation on Github: https://wynand1004.github.io/SGE
+# SPGL Documentation on Github: https://wynand1004.github.io/SPGL
 # Use this as the starting point for your own games
 
 # Import SPGL
