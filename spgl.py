@@ -243,10 +243,17 @@ class Game(object):
         self.title = title
 
     def set_keyboard_binding(self, key, function):
-        #Python 3
+        # Allow any order of arguments as this is reversed from Tkinter
+        # Check if key is a string. If not, reverse the arguments
+        if type(key) is not str:
+            temp = key
+            key = function
+            function = temp
+
+        # Python 3
         try:
             turtle.onkeypress(function, key)
-        #Python 2
+        # Python 2
         except:
             turtle.onkey(function, key)
 
