@@ -1,4 +1,4 @@
-# Simple Python Game Library Version 0.8.3 by /u/wynand1004 AKA @TokyoEdTech
+# Simple Python Game Library Version 0.8.5 by /u/wynand1004 AKA @TokyoEdTech
 # Documentation on Github: https://wynand1004.github.io/SPGL
 # Python 2.x and 3.x Compatible
 
@@ -437,6 +437,19 @@ class Sprite(turtle.Turtle):
 
     def click(self, x, y):
         print ("The sprite was clicked at ({},{})".format(x, y))
+
+    def rotate_left(self, degrees):
+        self.lt(degrees)
+		
+    def rotate_right(self, degrees):
+        self.rt(degrees)
+		
+    def go_forward(self, distance):
+        self.fd(distance)
+		
+    def go_backward(self, distance):
+        self.fd(-distance)
+		
 
 #Label Class
 class Label(turtle.Turtle):
