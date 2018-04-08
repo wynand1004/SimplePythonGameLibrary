@@ -424,7 +424,7 @@ class Sprite(turtle.Turtle):
                 Game.logs.append("Warning: {} file missing from disk.".format(image))
 
                 # Set placeholder shape
-                shape = "square"
+                image = "square"
                 width = 20 # This is the default for turtle module primitives
                 height = 20 # This is the default for turtle module primitives
 
