@@ -435,6 +435,10 @@ class Sprite(turtle.Turtle):
         # Click binding needs to be set again after image change
         self.onclick(self.click)
 
+    def set_bounding_box(self, height, width):
+        self.width = width
+	self.height = height
+
     def click(self, x, y):
         print ("The sprite was clicked at ({},{})".format(x, y))
 
