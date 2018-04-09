@@ -437,7 +437,7 @@ class Sprite(turtle.Turtle):
 
     def set_bounding_box(self, height, width):
         self.width = width
-	self.height = height
+        self.height = height
 
     def click(self, x, y):
         print ("The sprite was clicked at ({},{})".format(x, y))
