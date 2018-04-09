@@ -323,7 +323,7 @@ class Game(object):
         y_collision = (math.fabs(sprite_1.ycor() - sprite_2.ycor()) * 2) < (sprite_1.height + sprite_2.height)
         return (x_collision and y_collision)
 
-    def is_circle_collision(sprite_1, sprite_2, radius):
+    def is_circle_collision(self, sprite_1, sprite_2, radius):
         # Collision based on distance
     	a=sprite_1.xcor()-sprite_2.xcor()
     	b=sprite_1.ycor()-sprite_2.ycor()
