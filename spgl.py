@@ -1,4 +1,4 @@
-# Simple Python Game Library Version 0.8.5 by /u/wynand1004 AKA @TokyoEdTech
+# Simple Python Game Library Version 0.8.5.4 by /u/wynand1004 AKA @TokyoEdTech
 # Documentation on Github: https://wynand1004.github.io/SPGL
 # Python 2.x and 3.x Compatible
 
@@ -472,12 +472,14 @@ class Label(turtle.Turtle):
         self.penup()
         self.goto(x, y)
         self.color(color)
+        self.font_name = font_name
+        self.font_size = font_size
+        self.font_type = font_type
         self.font = (font_name, font_size, font_type)
         self.align = align
 
         # Attributes
         self.text = text
-
 
         # Append to master label list
         Game.labels.append(self)
@@ -489,6 +491,20 @@ class Label(turtle.Turtle):
     def update(self, text):
         self.text = text
         self.tick()
+        
+    def set_font_name(self, font_name):
+        self.font_name = font_name
+        self.font = (self.font_name, self.font_size, self.font_type)
+
+    def set_font_size(self, font_size):
+        self.font_size = font_size
+        self.font = (self.font_name, self.font_size, self.font_type)
+        
+    def set_font_type(self, font_type):
+        self.font_type = font_type
+        self.font = (self.font_name, self.font_size, self.font_type)
+    
+
 
 #Button Class
 class Button(turtle.Turtle):
