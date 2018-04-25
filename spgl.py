@@ -1,4 +1,4 @@
-# Simple Python Game Library Version 0.8.5.4 by /u/wynand1004 AKA @TokyoEdTech
+# Simple Python Game Library Version 0.8.5.5 by /u/wynand1004 AKA @TokyoEdTech
 # Documentation on Github: https://wynand1004.github.io/SPGL
 # Python 2.x and 3.x Compatible
 
@@ -435,7 +435,7 @@ class Sprite(turtle.Turtle):
         # Click binding needs to be set again after image change
         self.onclick(self.click)
 
-    def set_bounding_box(self, height, width):
+    def set_bounding_box(self, width, height):
         self.width = width
         self.height = height
 
