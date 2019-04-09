@@ -1,4 +1,4 @@
-# Simple Python Game Library Version 0.8.5.5 by /u/wynand1004 AKA @TokyoEdTech
+# Simple Python Game Library Version 0.8.5.6 by /u/wynand1004 AKA @TokyoEdTech
 # Documentation on Github: https://wynand1004.github.io/SPGL
 # Python 2.x and 3.x Compatible
 
@@ -96,12 +96,12 @@ class Game(object):
         turtle.onscreenclick(self.click)
 
         # Game Attributes
-        self.FPS = 30.0 # Lower this on slower computers or with large number of sprites
         self.SCREEN_WIDTH = screen_width
         self.SCREEN_HEIGHT = screen_height
         self.DATAFILE = "game.dat"
         self.SPLASHFILE = "splash.gif" # Must be in the same folder as game file
 
+        self.fps = 30.0 # Lower this on slower computers or with large number of sprites
         self.title = title
         self.gravity = 0
         self.state = "showsplash"
@@ -258,7 +258,7 @@ class Game(object):
             turtle.onkey(function, key)
 
     def update_screen(self):
-        while time.time() < self.time + (1.0 / self.FPS):
+        while time.time() < self.time + (1.0 / self.fps):
             pass
         turtle.update()
         self.time = time.time()
@@ -313,7 +313,7 @@ class Game(object):
         print ("Number of Labels: {}".format(len(Game.labels)))
         print ("Number of Buttons: {}".format(len(Game.buttons)))
         print ("")
-        print ("Frames Per Second (Target): {}".format(self.FPS))
+        print ("Frames Per Second (Target): {}".format(self.fps))
         print ("")
         self.print_error_logs()
 
@@ -345,6 +345,9 @@ class Game(object):
             turtle.bgpic(image)
         else:
             Game.logs.append("Warning: Background image {} must be a gif.".format(image))
+
+    def set_fps(self, fps):
+        self.fps = fps
 
     def exit(self):
         self.stop_all_sounds()
