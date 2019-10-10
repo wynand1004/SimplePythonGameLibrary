@@ -1,4 +1,4 @@
-# Simple Python Game Library Version 0.8.5.6 by /u/wynand1004 AKA @TokyoEdTech
+# Simple Python Game Library Version 0.8.6.0 by /u/wynand1004 AKA @TokyoEdTech
 # Documentation on Github: https://wynand1004.github.io/SPGL
 # Python 2.x and 3.x Compatible
 
@@ -348,6 +348,9 @@ class Game(object):
 
     def set_fps(self, fps):
         self.fps = fps
+        
+    def after(self, function, milliseconds):
+        turtle.ontimer(function, milliseconds)
 
     def exit(self):
         self.stop_all_sounds()
